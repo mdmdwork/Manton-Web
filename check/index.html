@@ -1,0 +1,52 @@
+<!DOCTYPE html>  
+<html lang="zh">  
+    <script type="text/javascript">
+        function btoaEncode() {
+            return btoa(encodeURIComponent(document.getElementById("u").value))
+        };
+        function atobDecode() {
+            return decodeURIComponent(atob(document.getElementById("u").value))
+        };
+        var m1 = "JUU4JUIwJUEyJUU5JTk3JUE4JUU0JUI4JTlD";
+        var m2 = "JUU1JUFEJTk5JUU3JThFJTg5JUU1JUE5JUI3";
+        
+        function checkall(){
+ 	        if(btoaEncode() == m1){
+	            document.getElementById("war").style.display = "none";
+                document.getElementById("war2").style.display = "block";
+                window.location.href='../resume';
+            }else if(btoaEncode() == m2){
+	            document.getElementById("war").style.display = "none";
+                document.getElementById("war2").style.display = "block";
+                window.location.href='../resume/syt';
+            }else{
+                document.getElementById("war").style.display = "block";
+            }
+        };
+        function keyup_submit(e){ 
+        var evt = window.event || e; 
+            if (evt.keyCode == 13){
+                checkall()
+            }
+        }
+// else if(document.getElementById("u").value ="孙玉婷"){
+// 	            document.getElementById("war").style.display = "none";
+//                 document.getElementById("war2").style.display = "block";
+//                 window.location.href='../resume/syt';
+    </script>
+    <head>  
+        <meta charset="UTF-8">  
+        <title>信息验证</title>  
+        <link rel="stylesheet" type="text/css" href="check.css"/>  
+    </head>  
+    <body>  
+        <div id="login">  
+            <h1>信息验证</h1>
+            <input type="text" required="required" placeholder="请输入简历主人姓名" name="u" id="u" onkeydown="keyup_submit(event);"></input>  
+            <!--<input type="password" required="required" placeholder="请输入密码" name="p" id="p"></input>-->
+            <span id="war" style="display:none"> 信息不正确，不能给你看哦 </span>
+            <span id="war2" style="display:none"> 信息正确，正在加载中... </span> 
+            <button class="but" type="submit" onclick="checkall()">查看简历</button>  
+        </div>  
+    </body>  
+</html>

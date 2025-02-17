@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Base64加密解密工具</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f1f1f1;
+		}
+
+		h1 {
+			text-align: center;
+			margin: 50px 0 30px 0;
+		}
+
+		.container {
+			width: 600px;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 30px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
+
+		label {
+			display: block;
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		button {
+			padding: 10px 20px;
+			font-size: 16px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-right: 10px;
+		}
+
+		button:last-child {
+			margin-right: 0;
+		}
+
+		.output {
+			font-size: 18px;
+			margin-top: 20px;
+			padding: 10px;
+			background-color: #e9e9e9;
+			border-radius: 5px;
+			white-space: pre-wrap;
+			word-break: break-all;
+			max-height: 200px;
+			overflow-y: auto;
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Base64加密解密工具</h1>
+	<div class="container">
+		<label>输入明文：</label>
+		<input type="text" id="input-text">
+		<div class="button-container">
+			<button onclick="encrypt()">加密</button>
+			<button onclick="decrypt()">解密</button>
+      <button onclick="copyResult()">复制结果</button>
+		</div>
+		<label>输出结果：</label>
+		<div class="output" id="output"></div>
+    <div class="result" id="result">
+			<p id="result-text"></p>
+		</div>
+
+	</div>
+
+	<script>
+		function encrypt() {
+			var inputText = document.getElementById("input-text").value;
+			var encryptedText = btoa(encodeURIComponent(inputText));
+			document.getElementById("output").innerHTML = encryptedText;
+		}
+
+		function decrypt() {
+			var encryptedText = document.getElementById("input-text").value;
+			var decryptedText = decodeURIComponent(atob(encryptedText));
+			document.getElementById("output").innerHTML = decryptedText;
+		}
+
+    function copyResult() {
+			var resultText = document.getElementById("output");
+			var tempInput = document.createElement("input");
+			document.body.appendChild(tempInput);
+			tempInput.setAttribute("value", resultText.innerText);
+			tempInput.select();
+			document.execCommand("copy");
+			document.body.removeChild(tempInput);
+			alert("复制成功");
+		}
+	</script>
+</body>
+</html>
